@@ -1,0 +1,9 @@
+com\naitech\repository\persistence\DrivingRepo.class
+com\naitech\repository\persistence\Health_fitness_repo.class
+com\naitech\repository\persistence\AccountTypeRepo.class
+com\naitech\repository\persistence\Spending.class
+com\naitech\repository\persistence\TransactionsRepo.class
+com\naitech\repository\Config\RepositoryConfig.class
+com\naitech\repository\persistence\RewardsRepo.class
+com\naitech\repository\persistence\Rewards_Categories.class
+com\naitech\repository\persistence\MemberRepo.class

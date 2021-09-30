@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="accountsystemwebservices" />
+        <module name="accountsystemlogic" />
+        <module name="accountsystemrepository" />
+        <module name="accountsystemdomain" />
+        <module name="accountsystemtranslator" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="accountsystemWebSpringBoot" target="8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="accountsystemWebSpringBoot" options="-parameters" />
+      <module name="accountsystemdomain" options="-parameters" />
+      <module name="accountsystemlogic" options="-parameters" />
+      <module name="accountsystemrepository" options="-parameters" />
+      <module name="accountsystemtranslator" options="-parameters" />
+      <module name="accountsystemwebservices" options="-parameters" />
+    </option>
+  </component>
+</project>

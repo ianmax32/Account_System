@@ -1,0 +1,8 @@
+com\naitech\domain\persistence\Member.class
+com\naitech\domain\persistence\AccountType.class
+com\naitech\domain\persistence\Spending.class
+com\naitech\domain\persistence\Rewards.class
+com\naitech\domain\persistence\Rewards_Categories.class
+com\naitech\domain\persistence\Transactions.class
+com\naitech\domain\persistence\Health_fitness.class
+com\naitech\domain\persistence\Driving.class
