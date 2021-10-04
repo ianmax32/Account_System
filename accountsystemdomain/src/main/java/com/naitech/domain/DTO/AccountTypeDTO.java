@@ -9,20 +9,23 @@ public class AccountTypeDTO implements Serializable {
     private String name;
     private LocalDate date_created;
     private String placeHolder;
-    private AccountType accountType;
 
     public AccountTypeDTO() {
     }
 
     public AccountTypeDTO(AccountType accountType) {
-        this.accountType = accountType;
+        this.name = accountType.getName();
+        this.date_created = accountType.getDate_created();
+        this.placeHolder = accountType.getPlaceHolder();
     }
+
 
     public AccountTypeDTO(String name, LocalDate date_created, String placeHolder) {
         this.name = name;
         this.date_created = date_created;
         this.placeHolder = placeHolder;
     }
+
 
     public String getName() {
         return name;

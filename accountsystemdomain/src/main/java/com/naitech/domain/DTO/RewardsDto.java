@@ -1,30 +1,38 @@
 package com.naitech.domain.DTO;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.naitech.domain.persistence.Driving;
+import com.naitech.domain.persistence.Member;
 import com.naitech.domain.persistence.Rewards;
+import com.naitech.domain.persistence.RewardsCategories;
 
 import java.io.Serializable;
 
 public class RewardsDto implements Serializable {
     private String reward_name;
-    private String reward_category_name;
+    private RewardsCategoriesDto reward_category_name;
     private double reward_amount;
-    private Rewards rewards;
 
     public RewardsDto() {
     }
 
     public RewardsDto(Rewards rewards) {
-        super();
         this.reward_name = rewards.getReward_name();
         this.reward_amount = rewards.getReward_amount();
-        this.reward_category_name = rewards.getReward_category_id().getCategory_Name();
+        if(null != rewards.getReward_category_id()){
+            this.reward_category_name = new RewardsCategoriesDto(rewards.getReward_category_id());
+        }
     }
 
-    public RewardsDto(String reward_name, String reward_category_name, double reward_amount, Rewards rewards) {
+    public RewardsDto(String reward_name, RewardsCategoriesDto reward_category_name, double reward_amount) {
         this.reward_name = reward_name;
         this.reward_category_name = reward_category_name;
         this.reward_amount = reward_amount;
-        this.rewards = rewards;
+    }
+
+    @JsonIgnore
+    public Rewards buildReward(RewardsCategories reward){
+        return new Rewards(null, this.getReward_name(), reward,this.getReward_amount());
     }
 
     public String getReward_name() {
@@ -35,20 +43,12 @@ public class RewardsDto implements Serializable {
         this.reward_name = reward_name;
     }
 
-    public String getReward_category_name() {
+    public RewardsCategoriesDto getReward_category_name() {
         return reward_category_name;
     }
 
-    public void setReward_category_name(String reward_category_name) {
+    public void setReward_category_name(RewardsCategoriesDto reward_category_name) {
         this.reward_category_name = reward_category_name;
-    }
-
-    public Rewards getRewards() {
-        return rewards;
-    }
-
-    public void setRewards(Rewards rewards) {
-        this.rewards = rewards;
     }
 
     public double getReward_amount() {
@@ -65,7 +65,6 @@ public class RewardsDto implements Serializable {
                 "reward_name='" + reward_name + '\'' +
                 ", reward_category_name='" + reward_category_name + '\'' +
                 ", reward_amount=" + reward_amount +
-                ", rewards=" + rewards +
                 '}';
     }
 }

@@ -18,14 +18,12 @@ public class MemberDto implements Serializable {
     private DrivingDto drivingDto;
     private SpendingDto spendingDto;
     private HealthFitnessDto healthFitnessDto;
-    private List<TransactionsDto> transactionsDto;
 
 
     public MemberDto() {
     }
 
     public MemberDto(Member member) {
-        super();
         this.name = member.getName();
         this.surname = member.getSurname();
         this.dob = member.getDob();
@@ -61,7 +59,6 @@ public class MemberDto implements Serializable {
         this.drivingDto = drivingDto;
         this.spendingDto = spendingDto;
         this.healthFitnessDto = healthFitnessDto;
-        this.transactionsDto = transactionsDto;
     }
 
     public String getName() {
@@ -128,13 +125,6 @@ public class MemberDto implements Serializable {
         this.healthFitnessDto = healthFitnessDto;
     }
 
-    public List<TransactionsDto> getTransactionsDto() {
-        return transactionsDto;
-    }
-
-    public void setTransactionsDto(List<TransactionsDto> transactionsDto) {
-        this.transactionsDto = transactionsDto;
-    }
 
     @Override
     public String toString() {
@@ -147,7 +137,6 @@ public class MemberDto implements Serializable {
                 ", driving details=" + drivingDto +
                 ", spending details=" + spendingDto +
                 ", healthFitness details=" + healthFitnessDto +
-                ", transactions details=" + transactionsDto +
                 '}';
     }
 }

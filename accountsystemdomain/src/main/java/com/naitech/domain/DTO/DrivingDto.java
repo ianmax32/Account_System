@@ -1,5 +1,6 @@
 package com.naitech.domain.DTO;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.naitech.domain.persistence.Driving;
 import com.naitech.domain.persistence.Member;
 
@@ -8,29 +9,29 @@ import java.io.Serializable;
 public class DrivingDto implements Serializable {
     private double week_goal_km;
     private double km;
-    private Long member;
 
 
     public DrivingDto() {
     }
 
     public DrivingDto(Driving driving) {
-        super();
         this.week_goal_km = driving.getWeek_goal_km();
         this.km = driving.getKm();
-        this.member =driving.getIdNumber().getIdNUmber();
+        //this.member =driving.getIdNumber().getIdNUmber();
 
     }
 
     public DrivingDto(double week_goal_km, double km, Long member) {
         this.week_goal_km = week_goal_km;
         this.km = km;
-        this.member = member;
+        //this.member = member;
     }
 
-    /*public DrivingDto buildDriving(Member member){
-        return new DrivingDto(member);
-    }*/
+    @JsonIgnore
+    public Driving buildDriving(Member member){
+        return new Driving(null, this.getWeek_goal_km(), this.getKm(),member);
+    }
+
 
     public double getWeek_goal_km() {
         return week_goal_km;
@@ -49,13 +50,13 @@ public class DrivingDto implements Serializable {
         this.km = km;
     }
 
-    public Long getMember() {
+    /*public Long getMember() {
         return member;
     }
 
     public void setMember(Long member) {
         this.member = member;
-    }
+    }*/
 
 
 
@@ -64,7 +65,7 @@ public class DrivingDto implements Serializable {
         return "DrivingDto{" +
                 "week_goal_km=" + week_goal_km +
                 ", km=" + km +
-                ", member=" + member +
+                //", member=" + member +
                 '}';
     }
 }

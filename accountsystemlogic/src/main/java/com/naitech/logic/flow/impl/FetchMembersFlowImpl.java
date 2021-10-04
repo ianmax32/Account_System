@@ -44,8 +44,8 @@ public class FetchMembersFlowImpl implements FetchMembersFlow {
         membersTranslator.removeMember(id);
     }
 
-    @Override
-    public void updateMember(Long id) {
-        membersTranslator.updateMember(id);
-    }
+    /*@Override
+    public void updateMember(MemberDto memberDto) {
+        membersTranslator.updateMember(memberDto);
+    }*/
 }

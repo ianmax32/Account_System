@@ -6,4 +6,6 @@ import java.util.*;
 
 public interface TransactionsTranslator {
     List<TransactionsDto> getTransactions();
+    TransactionsDto addTransaction(TransactionsDto transactionsDto);
+    List<TransactionsDto> getTransactionsById(Long id);
 }

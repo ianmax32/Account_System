@@ -1,5 +1,6 @@
 package com.naitech.domain.DTO;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.naitech.domain.persistence.Health_fitness;
 import com.naitech.domain.persistence.Member;
 
@@ -9,16 +10,20 @@ public class HealthFitnessDto implements Serializable {
 
     private double week_goal;
     private double current_amount;
-    private Long member;
+    //private Long member;
 
     public HealthFitnessDto() {
     }
 
     public HealthFitnessDto(Health_fitness health_fitness) {
-        super();
         this.week_goal = health_fitness.getWeek_goal();
         this.current_amount =health_fitness.getCurrent_amount();
-        this.member= health_fitness.getIdNumber().getIdNUmber();
+        //this.member= health_fitness.getIdNumber().getIdNUmber();
+    }
+
+    @JsonIgnore
+    public Health_fitness buildHealth(Member member){
+        return new Health_fitness(null,this.getWeek_goal(), this.getCurrent_amount(), member);
     }
 
     public HealthFitnessDto(double week_goal, double current_amount) {
@@ -29,7 +34,7 @@ public class HealthFitnessDto implements Serializable {
     public HealthFitnessDto(double week_goal, double current_amount, Long member) {
         this.week_goal = week_goal;
         this.current_amount = current_amount;
-        this.member = member;
+        //this.member = member;
     }
 
     public double getWeek_goal() {
@@ -48,20 +53,20 @@ public class HealthFitnessDto implements Serializable {
         this.current_amount = current_amount;
     }
 
-    public Long getMember() {
+  /*  public Long getMember() {
         return member;
     }
 
     public void setMember(Long member) {
         this.member = member;
-    }
+    }*/
 
     @Override
     public String toString() {
         return "HealthFitnessDto{" +
                 "week_goal=" + week_goal +
                 ", current_amount=" + current_amount +
-                ", member id=" + member +
+                //", member id=" + member +
                 '}';
     }
 }

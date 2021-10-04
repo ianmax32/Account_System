@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface FetchTransactionsFlow {
     List<TransactionsDto> fetchTransactions();
+    TransactionsDto addTransaction(TransactionsDto transactionsDto);
+    List<TransactionsDto> getTransactionsById(Long id);
 }

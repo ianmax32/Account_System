@@ -23,8 +23,8 @@ public class Rewards implements Serializable {
     }
 
     @Id
-    @SequenceGenerator(name="NAITECH_GENERIC_SEQ",sequenceName = "AS_NAITECH_GENERIC_SEQ",allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "NAITECH_GENERIC_SEQ")
+    @SequenceGenerator(name="Rewards_GENERIC_SEQ",sequenceName = "AS_Rewards_GENERIC_SEQ",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Rewards_GENERIC_SEQ")
     @Column(name="Reward_ID")
     public Long getReward_id() {
         return reward_id;

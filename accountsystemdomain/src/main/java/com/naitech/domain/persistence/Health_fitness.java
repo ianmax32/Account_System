@@ -23,8 +23,8 @@ public class Health_fitness implements Serializable {
     }
 
     @Id
-    @SequenceGenerator(name="NAITECH_GENERIC_SEQ",sequenceName = "AS_NAITECH_GENERIC_SEQ",allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "NAITECH_GENERIC_SEQ")
+    @SequenceGenerator(name="HF_GENERIC_SEQ",sequenceName = "AS_HF_GENERIC_SEQ",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "HF_GENERIC_SEQ")
     @Column(name="Health_fitness_ID")
     public Long getId() {
         return id;

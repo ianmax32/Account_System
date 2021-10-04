@@ -1,6 +1,7 @@
 package com.naitech.webservices.controllers;
 
 
+import com.naitech.domain.DTO.DrivingDto;
 import com.naitech.domain.DTO.MemberDto;
 import com.naitech.domain.DTO.SpendingDto;
 import com.naitech.logic.flow.FetchSpendingFlow;
@@ -10,10 +11,7 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -51,5 +49,18 @@ public class SpendingController {
     public ResponseEntity<SpendingDto> getMember(@RequestParam Long id){
         SpendingDto memberSpending = fetchSpendingFlow.getMemberSpending(id);
         return new ResponseEntity<>(memberSpending, HttpStatus.OK);
+    }
+
+    @ApiOperation(value="Updates registered member's spending" ,notes="Member's spending is updated")
+    @ApiResponses(value={
+            @ApiResponse(code=200,message="Spending updated"),
+            @ApiResponse(code=400,message="Bad request"),
+            @ApiResponse(code=404,message="Not found"),
+            @ApiResponse(code=500,message="Internal Server error")
+    })
+    @PostMapping("/update")
+    public ResponseEntity<Boolean> updateMemberSpending(@RequestParam Long id, @RequestBody SpendingDto spendingDto){
+        fetchSpendingFlow.updateMemberSpending(id,spendingDto);
+        return new ResponseEntity<>(true, HttpStatus.OK);
     }
 }

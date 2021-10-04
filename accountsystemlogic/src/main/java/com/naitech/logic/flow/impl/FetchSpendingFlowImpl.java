@@ -1,5 +1,6 @@
 package com.naitech.logic.flow.impl;
 
+import com.naitech.domain.DTO.MemberDto;
 import com.naitech.domain.DTO.SpendingDto;
 import com.naitech.logic.flow.FetchSpendingFlow;
 import com.naitech.translator.SpendingTranslator;
@@ -29,5 +30,15 @@ public class FetchSpendingFlowImpl implements FetchSpendingFlow {
     public SpendingDto getMemberSpending(Long id) {
         SpendingDto spendingDto = spendingTranslator.getMemberSpending(id);
         return spendingDto;
+    }
+
+    @Override
+    public void addMember(MemberDto spendingDto) {
+        spendingTranslator.addMember(spendingDto);
+    }
+
+    @Override
+    public void updateMemberSpending(Long id, SpendingDto spendingDto) {
+        spendingTranslator.updateMemberSpending(id,spendingDto);
     }
 }

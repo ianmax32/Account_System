@@ -23,8 +23,8 @@ public class Spending implements Serializable {
     }
 
     @Id
-    @SequenceGenerator(name="NAITECH_GENERIC_SEQ",sequenceName = "AS_NAITECH_GENERIC_SEQ",allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "NAITECH_GENERIC_SEQ")
+    @SequenceGenerator(name="Spending_GENERIC_SEQ",sequenceName = "AS_Spending_GENERIC_SEQ",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Spending_GENERIC_SEQ")
     @Column(name="Spending_ID")
     public Long getId() {
         return id;

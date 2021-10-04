@@ -46,7 +46,7 @@ public class SwaggerConfig {
                 applicationDescription,
                 applicationVersion,
                 "",
-                new Contact("Your Name or Team Name", "", "email address"),
+                new Contact("Ian Masaga or NaiTech", "", "masagaian32@gmail.com"),
                 "",
                 "",
                 Collections.emptyList());

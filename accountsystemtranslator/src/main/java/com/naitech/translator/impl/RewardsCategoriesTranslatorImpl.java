@@ -31,4 +31,28 @@ public class RewardsCategoriesTranslatorImpl implements RewardsCategoriesTransla
         }
         return rewardsCategoriesDtos;
     }
+
+    @Override
+    public RewardsCategoriesDto addRCategories(RewardsCategoriesDto rewardsCategoriesDto) {
+        RewardsCategories rewardsCategories = new RewardsCategories();
+        try {
+            rewardsCategories.setCategory_id(null);
+            rewardsCategories.setCategory_Name(rewardsCategoriesDto.getCategory_Name());
+            rewardsCategories.setCategory_Type(rewardsCategoriesDto.getCategory_Type());
+            rewards_categoriesRepo.save(rewardsCategories);
+        }catch(Exception e){
+            throw new RuntimeException("Cannot save category from the database",e);
+        }
+        return rewardsCategoriesDto;
+    }
+
+    @Override
+    public void deleteCategory(String name) {
+        try {
+            RewardsCategories rewardsCategories = rewards_categoriesRepo.getRewardsCategoryUniqueName(name);
+            rewards_categoriesRepo.delete(rewardsCategories);
+        }catch(Exception e){
+            throw new RuntimeException("Cannot delete category from the database",e);
+        }
+    }
 }

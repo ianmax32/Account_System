@@ -1,6 +1,7 @@
 package com.naitech.webservices.controllers;
 
 
+import com.naitech.domain.DTO.DrivingDto;
 import com.naitech.domain.DTO.HealthFitnessDto;
 import com.naitech.domain.DTO.MemberDto;
 import com.naitech.logic.flow.fetchHealthFitnessFlow;
@@ -10,10 +11,7 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -51,6 +49,20 @@ public class HealthFitnessController {
     public ResponseEntity<HealthFitnessDto> getMember(@RequestParam Long id){
         HealthFitnessDto memberDto = fetchHealthFitnessFlowvar.getMemberHealth(id);
         return new ResponseEntity<>(memberDto, HttpStatus.OK);
+    }
+
+
+    @ApiOperation(value="Updates registered member's health and fitness" ,notes="Member's health and fitness is updated")
+    @ApiResponses(value={
+            @ApiResponse(code=200,message="health and fitness updated"),
+            @ApiResponse(code=400,message="Bad request"),
+            @ApiResponse(code=404,message="Not found"),
+            @ApiResponse(code=500,message="Internal Server error")
+    })
+    @PostMapping("/update")
+    public ResponseEntity<Boolean> updateMemberHealthandFitness(@RequestParam Long id, @RequestBody HealthFitnessDto healthFitnessDto){
+        fetchHealthFitnessFlowvar.updateDriving(id,healthFitnessDto);
+        return new ResponseEntity<>(true, HttpStatus.OK);
     }
 
 }

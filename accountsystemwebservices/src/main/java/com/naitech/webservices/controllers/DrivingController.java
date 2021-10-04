@@ -9,15 +9,12 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("members")
+@RequestMapping("/members/driving")
 public class DrivingController {
     FetchDrivingFlow fetchDrivingFlow;
 
@@ -39,16 +36,30 @@ public class DrivingController {
         return new ResponseEntity<>(allmembersspending, HttpStatus.OK);
     }
 
-    @ApiOperation(value="Gets a registered member's driving " ,notes="Returns the driving of member with specified id")
+    @ApiOperation(value="Gets a registered member's driving" ,notes="Returns the driving of member with specified id")
     @ApiResponses(value={
-            @ApiResponse(code=200,message="Member returned"),
+            @ApiResponse(code=200,message="Driving returned"),
             @ApiResponse(code=400,message="Bad request"),
             @ApiResponse(code=404,message="Not found"),
             @ApiResponse(code=500,message="Internal Server error")
     })
-    @GetMapping("/driving")
+    @GetMapping("/member-driving")
     public ResponseEntity<DrivingDto> getMemberDriving(@RequestParam Long id){
         DrivingDto memberDriving = fetchDrivingFlow.fetchMemberDriving(id);
         return new ResponseEntity<>(memberDriving, HttpStatus.OK);
     }
+
+    @ApiOperation(value="Updates registered member's driving" ,notes="Member's driving is updated")
+    @ApiResponses(value={
+            @ApiResponse(code=200,message="Driving updated"),
+            @ApiResponse(code=400,message="Bad request"),
+            @ApiResponse(code=404,message="Not found"),
+            @ApiResponse(code=500,message="Internal Server error")
+    })
+    @PostMapping("/update")
+    public ResponseEntity<Boolean> updateMemberDriving(@RequestParam Long id, @RequestBody DrivingDto drivingDto){
+        fetchDrivingFlow.updateDriving(id,drivingDto);
+        return new ResponseEntity<>(true, HttpStatus.OK);
+    }
+
 }

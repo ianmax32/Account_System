@@ -24,4 +24,14 @@ public class FetchAccountTypeFlowImpl implements FetchAccountTypeFlow {
         accountTypeDTOS = accountTypeTranslator.getAllAccountTypes();
         return accountTypeDTOS;
     }
+
+    @Override
+    public AccountTypeDTO addAccountType(AccountTypeDTO accountTypeDTO) {
+        return accountTypeTranslator.addAccountType(accountTypeDTO);
+    }
+
+    @Override
+    public void deleteAccountType(String name) {
+        accountTypeTranslator.deleteAccountType(name);
+    }
 }

@@ -36,8 +36,8 @@ public class RewardsCategories implements Serializable {
     }
 
     @Id
-    @SequenceGenerator(name="NAITECH_GENERIC_SEQ",sequenceName = "AS_NAITECH_GENERIC_SEQ",allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "NAITECH_GENERIC_SEQ")
+    @SequenceGenerator(name="RC_GENERIC_SEQ",sequenceName = "AS_RC_GENERIC_SEQ",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RC_GENERIC_SEQ")
     @Column(name="Rewards_Category_ID")
     public Long getCategory_id() {
         return category_id;
@@ -56,7 +56,7 @@ public class RewardsCategories implements Serializable {
         this.category_Name = category_Name;
     }
 
-    @Column(name="Rewards_Category_Type")
+    @Column(name="Rewards_Category_Type",unique = true)
     public String getCategory_Type() {
         return category_Type;
     }

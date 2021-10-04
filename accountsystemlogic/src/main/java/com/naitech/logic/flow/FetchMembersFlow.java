@@ -10,5 +10,5 @@ public interface FetchMembersFlow {
     MemberDto getMember(Long id);
     void addMember(MemberDto member);
     void removeMember(Long id);
-    void updateMember(Long id);
+    //void updateMember(MemberDto memberDto);
 }

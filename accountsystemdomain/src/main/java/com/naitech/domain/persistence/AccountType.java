@@ -13,7 +13,7 @@ public class AccountType implements Serializable {
     private String name;
     private LocalDate date_created;
     private String placeHolder;
-    private Set<Transactions> transactions;
+    private Set<MemberTransactions> transactions;
 
     public AccountType() {
     }
@@ -26,8 +26,8 @@ public class AccountType implements Serializable {
     }
 
     @Id
-    @SequenceGenerator(name="NAITECH_GENERIC_SEQ",sequenceName = "AS_NAITECH_GENERIC_SEQ",allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "NAITECH_GENERIC_SEQ")
+    @SequenceGenerator(name="AT_GENERIC_SEQ",sequenceName = "AS_AC_GENERIC_SEQ",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "AT_GENERIC_SEQ")
     @Column(name="AccountType_ID")
     public Long getTypeID() {
         return typeID;
@@ -55,7 +55,7 @@ public class AccountType implements Serializable {
         this.date_created = date_created;
     }
 
-    @Column(name="AccountType_PlaceHolder")
+    @Column(name="AccountType_PlaceHolder", unique = true)
     public String getPlaceHolder() {
         return placeHolder;
     }
@@ -64,12 +64,12 @@ public class AccountType implements Serializable {
         this.placeHolder = placeHolder;
     }
 
-    @OneToMany(targetEntity = Transactions.class, fetch = FetchType.LAZY,mappedBy = "accountType",orphanRemoval = true)
-    public Set<Transactions> getTransactions() {
+    @OneToMany(targetEntity = MemberTransactions.class, fetch = FetchType.LAZY,mappedBy = "accountType",orphanRemoval = true)
+    public Set<MemberTransactions> getTransactions() {
         return transactions;
     }
 
-    public void setTransactions(Set<Transactions> transactions) {
+    public void setTransactions(Set<MemberTransactions> transactions) {
         this.transactions = transactions;
     }
 

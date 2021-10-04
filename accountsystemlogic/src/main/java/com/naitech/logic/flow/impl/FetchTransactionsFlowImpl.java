@@ -24,4 +24,16 @@ public class FetchTransactionsFlowImpl implements FetchTransactionsFlow {
         transactionsDtos = translator.getTransactions();
         return transactionsDtos;
     }
+
+    @Override
+    public TransactionsDto addTransaction(TransactionsDto transactionsDto) {
+        TransactionsDto transactionsDto1= translator.addTransaction(transactionsDto);
+        return transactionsDto1;
+    }
+
+    @Override
+    public List<TransactionsDto> getTransactionsById(Long id) {
+        List<TransactionsDto> transactionsDtos = translator.getTransactionsById(id);
+        return transactionsDtos;
+    }
 }

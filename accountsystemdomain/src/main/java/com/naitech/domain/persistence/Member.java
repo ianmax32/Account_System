@@ -1,5 +1,7 @@
 package com.naitech.domain.persistence;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -7,6 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
+//@NamedQuery(name = "Member.getID",query = "Select m from Member m where m.Member_Name='name' and m.Member_Surname='surname'")
 @Table(name="Members")
 public class Member implements Serializable {
     private Long idNUmber;
@@ -18,7 +21,7 @@ public class Member implements Serializable {
     private Spending spendings;
     private Health_fitness health_fitness;
     private Driving driving;
-    private List<Transactions> transactions;
+    private List<MemberTransactions> transactions;
 
     public Member() {
     }
@@ -32,7 +35,7 @@ public class Member implements Serializable {
         this.plays = plays;
     }
 
-    public Member(Long idNUmber, String name, String surname, LocalDate dob, String gender, int plays, Spending spendings, Health_fitness health_fitness, Driving driving, List<Transactions> transactions) {
+    public Member(Long idNUmber, String name, String surname, LocalDate dob, String gender, int plays, Spending spendings, Health_fitness health_fitness, Driving driving, List<MemberTransactions> transactions) {
         this.idNUmber = idNUmber;
         this.name = name;
         this.surname = surname;
@@ -46,8 +49,8 @@ public class Member implements Serializable {
     }
 
     @Id
-    @SequenceGenerator(name="NAITECH_GENERIC_SEQ",sequenceName = "AS_NAITECH_GENERIC_SEQ",allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "NAITECH_GENERIC_SEQ")
+    @SequenceGenerator(name="Member_GENERIC_SEQ",sequenceName = "AS_Member_GENERIC_SEQ",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Member_GENERIC_SEQ")
     @Column(name="Member_ID")
     public Long getIdNUmber() {
         return idNUmber;
@@ -116,7 +119,7 @@ public class Member implements Serializable {
         return Objects.hash(idNUmber, name, surname, dob, gender, plays);
     }
 
-    @OneToOne(targetEntity = Spending.class,fetch = FetchType.LAZY,optional = true,mappedBy = "idNumber",cascade = CascadeType.PERSIST)
+    @OneToOne(targetEntity = Spending.class,fetch = FetchType.LAZY,optional = true,mappedBy = "idNumber")
     public Spending getSpendings() {
         return spendings;
     }
@@ -143,12 +146,13 @@ public class Member implements Serializable {
         this.driving = driving;
     }
 
-    @OneToMany(targetEntity = Transactions.class,fetch = FetchType.LAZY,mappedBy = "member_id")
-    public List<Transactions> getTransactions() {
+    @OneToMany(targetEntity = MemberTransactions.class,fetch = FetchType.LAZY,mappedBy = "member_id")
+    @JsonIgnore
+    public List<MemberTransactions> getTransactions() {
         return transactions;
     }
 
-    public void setTransactions(List<Transactions> transactions) {
+    public void setTransactions(List<MemberTransactions> transactions) {
         this.transactions = transactions;
     }
 

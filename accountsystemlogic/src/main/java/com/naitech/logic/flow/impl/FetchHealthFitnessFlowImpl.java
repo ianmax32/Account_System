@@ -1,6 +1,7 @@
 package com.naitech.logic.flow.impl;
 
 import com.naitech.domain.DTO.HealthFitnessDto;
+import com.naitech.domain.DTO.MemberDto;
 import com.naitech.logic.flow.fetchHealthFitnessFlow;
 import com.naitech.translator.HealthFitnessTranslator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,15 @@ public class FetchHealthFitnessFlowImpl implements fetchHealthFitnessFlow {
     public HealthFitnessDto getMemberHealth(Long id) {
         HealthFitnessDto healthFitnessDto = healthFitnessTranslator.getMemberHealth(id);
         return healthFitnessDto;
+    }
+
+    @Override
+    public void addMember(MemberDto healthFitnessDto) {
+        healthFitnessTranslator.addMember(healthFitnessDto);
+    }
+
+    @Override
+    public void updateDriving(Long id, HealthFitnessDto healthFitnessDto) {
+        healthFitnessTranslator.updateDriving(id,healthFitnessDto);
     }
 }

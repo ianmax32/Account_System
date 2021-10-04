@@ -8,7 +8,8 @@ import java.util.*;
 public interface MembersTranslator {
     List<MemberDto> getMembers();
     MemberDto getMember(Long id);
-    void addMember(MemberDto member);
+    MemberDto addMember(MemberDto member);
     void removeMember(Long id);
-    void updateMember(Long id);
+    //void updateMember(MemberDto memberDto);
+    void updateMemberPlays(Long id);
 }

@@ -24,4 +24,27 @@ public class FetchRewardsFlowImpl implements FetchRewardsFlow {
         rewardsDtos = rewardsTranslator.getRewards();
         return rewardsDtos;
     }
+
+    @Override
+    public RewardsDto getReward(Long id) {
+        RewardsDto rewardsDto = rewardsTranslator.getReward(id);
+        return rewardsDto;
+    }
+
+    @Override
+    public void deleteReward(Long id) {
+        rewardsTranslator.deleteReward(id);
+    }
+
+    @Override
+    public RewardsDto addReward(RewardsDto rewardsDto) {
+        RewardsDto rewardsDto1 = rewardsTranslator.addReward(rewardsDto);
+        return rewardsDto1;
+    }
+
+    @Override
+    public RewardsDto updateRewardPrice(Long id, RewardsDto rewardsDto) {
+        RewardsDto rewardsDto1 = rewardsTranslator.updateRewardPrice(id,rewardsDto);
+        return rewardsDto;
+    }
 }

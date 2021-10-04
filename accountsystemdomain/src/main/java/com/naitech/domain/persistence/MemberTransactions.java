@@ -6,8 +6,8 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Transactions")
-public class Transactions implements Serializable {
+@Table(name = "Member_Transactions")
+public class MemberTransactions implements Serializable {
     private Long transaction_id;
     private AccountType accountType;
     private Member member_id;
@@ -15,10 +15,10 @@ public class Transactions implements Serializable {
     private LocalDate date;
     private String transactionName;
 
-    public Transactions() {
+    public MemberTransactions() {
     }
 
-    public Transactions(Long transaction_id, AccountType accountType, Member member_id, double transaction_amount, LocalDate date, String transactionName) {
+    public MemberTransactions(Long transaction_id, AccountType accountType, Member member_id, double transaction_amount, LocalDate date, String transactionName) {
         this.transaction_id = transaction_id;
         this.accountType = accountType;
         this.member_id = member_id;
@@ -28,8 +28,8 @@ public class Transactions implements Serializable {
     }
 
     @Id
-    @SequenceGenerator(name="NAITECH_GENERIC_SEQ",sequenceName = "AS_NAITECH_GENERIC_SEQ",allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "NAITECH_GENERIC_SEQ")
+    @SequenceGenerator(name="Transactions_GENERIC_SEQ",sequenceName = "AS_Transaction_GENERIC_SEQ",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Transactions_GENERIC_SEQ")
     @Column(name="Transaction_ID")
     public Long getTransaction_id() {
         return transaction_id;
@@ -90,7 +90,7 @@ public class Transactions implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Transactions that = (Transactions) o;
+        MemberTransactions that = (MemberTransactions) o;
         return Double.compare(that.transaction_amount, transaction_amount) == 0 && Objects.equals(transaction_id, that.transaction_id) && Objects.equals(accountType, that.accountType) && Objects.equals(member_id, that.member_id) && Objects.equals(date, that.date) && Objects.equals(transactionName, that.transactionName);
     }
 

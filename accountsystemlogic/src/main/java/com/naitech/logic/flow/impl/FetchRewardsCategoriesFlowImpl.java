@@ -24,4 +24,14 @@ public class FetchRewardsCategoriesFlowImpl implements FetchRewardsCategoriesFlo
         rewardsCategoriesDtos = rewardsCategoriesTranslator.getRewardsCategories();
         return rewardsCategoriesDtos;
     }
+
+    @Override
+    public RewardsCategoriesDto addRCategories(RewardsCategoriesDto rewardsCategoriesDto) {
+        return rewardsCategoriesTranslator.addRCategories(rewardsCategoriesDto);
+    }
+
+    @Override
+    public void deleteCategory(String name) {
+        rewardsCategoriesTranslator.deleteCategory(name);
+    }
 }
