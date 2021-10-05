@@ -63,9 +63,12 @@ public class RewardsTranslatorImpl implements RewardsTranslator {
     @Override
     public RewardsDto addReward(RewardsDto rewardsDto) {
         Rewards rewards;
+        System.out.println(rewardsDto.getReward_category_name().getCategory_Type());
         try {
-            RewardsCategories rewardsCategories = rewards_categoriesRepo.getRewardsCategoryUniqueName(rewardsDto.getReward_category_name().getCategory_Name());
+            RewardsCategories rewardsCategories = rewards_categoriesRepo.getRewardsCategoryUniqueName(rewardsDto.getReward_category_name().getCategory_Type());
+            System.out.println(rewardsCategories);
             rewards = rewardsDto.buildReward(rewardsCategories);
+            System.out.println(rewardsCategories);
             rewardsRepo.save(rewards);
         }catch(Exception e){
             throw new RuntimeException("Cannot add a new reward into db",e);

@@ -47,9 +47,13 @@ public class TransactionTranslatorImpl implements TransactionsTranslator {
     public TransactionsDto addTransaction(TransactionsDto transactionsDto) {
         MemberTransactions memberTransactions;
         try {
-            AccountType accountType = accountTypeRepo.getAccountTypeUniqueName(transactionsDto.getAccountTypeDTO().getPlaceHolder());
-            Member member = memberRepo.getID(transactionsDto.getMemberDto().getName(), transactionsDto.getMemberDto().getSurname());
+            AccountType accountType = accountTypeRepo.getAccountTypeUniqueName(transactionsDto.getAccountType());
+            Member member = memberRepo.getID(transactionsDto.getMembername(), transactionsDto.getMemberSurname());
+            System.out.println(accountType);
+            System.out.println(member);
             memberTransactions = transactionsDto.buildTransaction(accountType,member);
+            System.out.println(memberTransactions);
+            transactionsRepo.save(memberTransactions);
         }catch(Exception e){
             throw new RuntimeException("Cannot add a new transaction into the database",e);
         }

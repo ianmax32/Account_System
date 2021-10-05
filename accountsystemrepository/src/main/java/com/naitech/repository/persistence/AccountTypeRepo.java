@@ -12,7 +12,7 @@ import javax.transaction.Transactional;
 
 @Repository
 public interface AccountTypeRepo extends JpaRepository<AccountType, Long> {
-    @Query(value = "select account_type_place_holder from account_type where account_type_place_holder=:name",nativeQuery = true)
+    @Query(value = "select * from account_type where account_type_place_holder=:name",nativeQuery = true)
     public AccountType getAccountTypeUniqueName(@Param("name") String name);
 
 }

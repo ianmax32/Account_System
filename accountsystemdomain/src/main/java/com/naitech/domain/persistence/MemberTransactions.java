@@ -68,7 +68,7 @@ public class MemberTransactions implements Serializable {
         this.transaction_amount = transaction_amount;
     }
 
-    @Column(name = "Transaction Date")
+    @Column(name = "Transaction_Date")
     public LocalDate getDate() {
         return date;
     }
@@ -77,7 +77,7 @@ public class MemberTransactions implements Serializable {
         this.date = date;
     }
 
-    @Column(name = "Transaction Name")
+    @Column(name = "Transaction_Name")
     public String getTransactionName() {
         return transactionName;
     }

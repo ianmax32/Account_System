@@ -45,7 +45,7 @@ public class RewardsController {
             @ApiResponse(code=404,message="Not found"),
             @ApiResponse(code=500,message="Internal Server error")
     })
-    public ResponseEntity<RewardsDto> addReward(RewardsDto rewardsDto){
+    public ResponseEntity<RewardsDto> addReward(@RequestBody RewardsDto rewardsDto){
         RewardsDto rewardsDtos = fetchRewardsFlow.addReward(rewardsDto);
         return new ResponseEntity<>(rewardsDtos, HttpStatus.OK);
     }

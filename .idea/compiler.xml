@@ -19,6 +19,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="AccountSystem" options="-parameters" />
       <module name="accountsystemWebSpringBoot" options="-parameters" />
       <module name="accountsystemdomain" options="-parameters" />
       <module name="accountsystemlogic" options="-parameters" />

@@ -53,6 +53,7 @@ public class AccountTypeTranslatorImpl implements AccountTypeTranslator {
     public void deleteAccountType(String name) {
         try {
             AccountType accountType = accountTypeRepo.getAccountTypeUniqueName(name);
+            System.out.println(accountType);
             accountTypeRepo.delete(accountType);
         }catch (Exception e){
             throw new RuntimeException("Unable to read account types from DB",e);

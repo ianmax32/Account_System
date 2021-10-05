@@ -18,6 +18,7 @@ public class Member implements Serializable {
     private LocalDate dob;
     private String gender;
     private int plays;
+    private double amount;
     private Spending spendings;
     private Health_fitness health_fitness;
     private Driving driving;
@@ -26,13 +27,14 @@ public class Member implements Serializable {
     public Member() {
     }
 
-    public Member(Long idNUmber, String name, String surname, LocalDate dob, String gender, int plays) {
+    public Member(Long idNUmber, String name, String surname, LocalDate dob, String gender, int plays, double amount) {
         this.idNUmber = idNUmber;
         this.name = name;
         this.surname = surname;
         this.dob = dob;
         this.gender = gender;
         this.plays = plays;
+        this.amount = amount;
     }
 
     public Member(Long idNUmber, String name, String surname, LocalDate dob, String gender, int plays, Spending spendings, Health_fitness health_fitness, Driving driving, List<MemberTransactions> transactions) {
@@ -104,6 +106,15 @@ public class Member implements Serializable {
 
     public void setPlays(int plays) {
         this.plays = plays;
+    }
+
+    @Column(name = "Current_Amount")
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 
     @Override

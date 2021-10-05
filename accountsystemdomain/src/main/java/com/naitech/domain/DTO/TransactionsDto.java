@@ -12,8 +12,9 @@ public class TransactionsDto implements Serializable {
     private double transaction_amount;
     private LocalDate date;
     private String transactionName;
-    private AccountTypeDTO accountTypeDTO;
-    private MemberDTO2 memberDto;
+    private String accountType;
+    private String membername;
+    private String memberSurname;
 
     public TransactionsDto() {
     }
@@ -23,14 +24,18 @@ public class TransactionsDto implements Serializable {
         this.transaction_amount = memberTransactions.getTransaction_amount();
         this.date = memberTransactions.getDate();
         this.transactionName = memberTransactions.getTransactionName();
+        this.membername = memberTransactions.getMember_id().getName();
+        this.memberSurname = memberTransactions.getMember_id().getSurname();
+        this.accountType = memberTransactions.getAccountType().getPlaceHolder();
     }
 
-    public TransactionsDto(double transaction_amount, LocalDate date, Long memberID, String transactionName, AccountTypeDTO accountTypeDTO, MemberDTO2 memberDto) {
+    public TransactionsDto(double transaction_amount, LocalDate date, Long memberID, String transactionName, String accountTypeDTO, String memberDto, String memberSurname) {
         this.transaction_amount = transaction_amount;
         this.date = date;
         this.transactionName = transactionName;
-        this.accountTypeDTO = accountTypeDTO;
-        this.memberDto = memberDto;
+        this.accountType = accountTypeDTO;
+        this.membername = memberDto;
+        this.memberSurname = memberSurname;
     }
 
     @JsonIgnore
@@ -55,14 +60,6 @@ public class TransactionsDto implements Serializable {
         this.date = date;
     }
 
-    /*public Long getMemberID() {
-        return memberID;
-    }
-
-    public void setMemberID(Long memberID) {
-        this.memberID = memberID;
-    }*/
-
     public String getTransactionName() {
         return transactionName;
     }
@@ -71,20 +68,28 @@ public class TransactionsDto implements Serializable {
         this.transactionName = transactionName;
     }
 
-    public AccountTypeDTO getAccountTypeDTO() {
-        return accountTypeDTO;
+    public String getAccountType() {
+        return accountType;
     }
 
-    public void setAccountTypeDTO(AccountTypeDTO accountTypeDTO) {
-        this.accountTypeDTO = accountTypeDTO;
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
     }
 
-    public MemberDTO2 getMemberDto() {
-        return memberDto;
+    public String getMembername() {
+        return membername;
     }
 
-    public void setMemberDto(MemberDTO2 memberDto) {
-        this.memberDto = memberDto;
+    public void setMembername(String membername) {
+        this.membername = membername;
+    }
+
+    public String getMemberSurname() {
+        return memberSurname;
+    }
+
+    public void setMemberSurname(String memberSurname) {
+        this.memberSurname = memberSurname;
     }
 
     @Override

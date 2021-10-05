@@ -7,9 +7,7 @@ import com.naitech.logic.flow.FetchDrivingFlow;
 import com.naitech.logic.flow.FetchMembersFlow;
 import com.naitech.logic.flow.FetchSpendingFlow;
 import com.naitech.logic.flow.fetchHealthFitnessFlow;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -93,6 +91,7 @@ public class MembersController {
             @ApiResponse(code=500,message="Internal Server error")
     })
     @PutMapping("/member/add")
+    //@ApiModelProperty(position = 1,required = false,value = )
     public void addMember(@RequestBody MemberDto member){
         fetchMembersFlow.addMember(member);
         fetchDrivingFlow.addMember(member);

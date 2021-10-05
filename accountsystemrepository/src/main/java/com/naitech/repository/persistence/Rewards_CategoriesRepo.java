@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface Rewards_CategoriesRepo extends JpaRepository<RewardsCategories, Long> {
-    @Query(value = "select rewards_category_type from rewards_categories where rewards_category_name=:name",nativeQuery = true)
+    @Query(value = "select * from rewards_categories where rewards_category_type=:name",nativeQuery = true)
     public RewardsCategories getRewardsCategoryUniqueName(@Param("name") String name);
 }

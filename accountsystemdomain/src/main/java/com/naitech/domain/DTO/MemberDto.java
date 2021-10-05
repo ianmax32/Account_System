@@ -15,6 +15,7 @@ public class MemberDto implements Serializable {
     private LocalDate dob;
     private String gender;
     private int plays;
+    private double amount;
     private DrivingDto drivingDto;
     private SpendingDto spendingDto;
     private HealthFitnessDto healthFitnessDto;
@@ -29,6 +30,7 @@ public class MemberDto implements Serializable {
         this.dob = member.getDob();
         this.gender = member.getGender();
         this.plays = member.getPlays();
+        this.amount = member.getAmount();
         if(null != member.getDriving()){
             this.drivingDto = new DrivingDto(member.getDriving());
         }
@@ -42,12 +44,13 @@ public class MemberDto implements Serializable {
 
     }
 
-    public MemberDto(String name, String surname, LocalDate dob, String gender, int plays) {
+    public MemberDto(String name, String surname, LocalDate dob, String gender, int plays,double amount) {
         this.name = name;
         this.surname = surname;
         this.dob = dob;
         this.gender = gender;
         this.plays = plays;
+        this.amount = amount;
     }
 
     public MemberDto(String name, String surname, LocalDate dob, String gender, int plays, DrivingDto drivingDto, SpendingDto spendingDto, HealthFitnessDto healthFitnessDto, List<TransactionsDto> transactionsDto) {
@@ -101,6 +104,14 @@ public class MemberDto implements Serializable {
         this.plays = plays;
     }
 
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
     public DrivingDto getDrivingDto() {
         return drivingDto;
     }
@@ -134,6 +145,7 @@ public class MemberDto implements Serializable {
                 ", dob=" + dob +
                 ", gender='" + gender + '\'' +
                 ", plays=" + plays +
+                ", amount=" + amount +
                 ", driving details=" + drivingDto +
                 ", spending details=" + spendingDto +
                 ", healthFitness details=" + healthFitnessDto +

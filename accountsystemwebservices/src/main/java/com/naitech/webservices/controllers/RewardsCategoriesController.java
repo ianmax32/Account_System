@@ -37,7 +37,7 @@ public class RewardsCategoriesController {
         return new ResponseEntity<>(rewardsCategoriesDtos, HttpStatus.OK);
     }
 
-    @PutMapping("/all")
+    @PutMapping("/add")
     @ApiOperation(value="Adds a new reward category" ,notes="Returns a new rewards category")
     @ApiResponses(value={
             @ApiResponse(code=200,message="Rewards category added"),

@@ -64,7 +64,7 @@ public class AccountType implements Serializable {
         this.placeHolder = placeHolder;
     }
 
-    @OneToMany(targetEntity = MemberTransactions.class, fetch = FetchType.LAZY,mappedBy = "accountType",orphanRemoval = true)
+    @OneToMany(targetEntity = MemberTransactions.class, fetch = FetchType.LAZY,mappedBy = "accountType",orphanRemoval = false)
     public Set<MemberTransactions> getTransactions() {
         return transactions;
     }
