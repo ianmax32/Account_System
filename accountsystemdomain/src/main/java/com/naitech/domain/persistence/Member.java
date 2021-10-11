@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-//@NamedQuery(name = "Member.getID",query = "Select m from Member m where m.Member_Name='name' and m.Member_Surname='surname'")
 @Table(name="Members")
 public class Member implements Serializable {
     private Long idNUmber;
@@ -130,7 +129,7 @@ public class Member implements Serializable {
         return Objects.hash(idNUmber, name, surname, dob, gender, plays);
     }
 
-    @OneToOne(targetEntity = Spending.class,fetch = FetchType.LAZY,optional = true,mappedBy = "idNumber")
+    @OneToOne(targetEntity = Spending.class,fetch = FetchType.LAZY,optional = true,mappedBy = "idNumber",cascade = CascadeType.PERSIST)
     public Spending getSpendings() {
         return spendings;
     }
@@ -139,7 +138,7 @@ public class Member implements Serializable {
         this.spendings = spendings;
     }
 
-    @OneToOne(targetEntity = Health_fitness.class,fetch = FetchType.LAZY,optional = true,mappedBy = "idNumber")
+    @OneToOne(targetEntity = Health_fitness.class,fetch = FetchType.LAZY,optional = true,mappedBy = "idNumber",cascade = CascadeType.PERSIST)
     public Health_fitness getHealth_fitness() {
         return health_fitness;
     }
@@ -148,7 +147,7 @@ public class Member implements Serializable {
         this.health_fitness = health_fitness;
     }
 
-    @OneToOne(targetEntity = Driving.class,fetch = FetchType.LAZY,optional = true,mappedBy = "idNumber")
+    @OneToOne(targetEntity = Driving.class,fetch = FetchType.LAZY,optional = true,mappedBy = "idNumber",cascade = CascadeType.PERSIST)
     public Driving getDriving() {
         return driving;
     }
@@ -157,7 +156,7 @@ public class Member implements Serializable {
         this.driving = driving;
     }
 
-    @OneToMany(targetEntity = MemberTransactions.class,fetch = FetchType.LAZY,mappedBy = "member_id")
+    @OneToMany(targetEntity = MemberTransactions.class,fetch = FetchType.LAZY,mappedBy = "member_id", cascade = CascadeType.PERSIST)
     @JsonIgnore
     public List<MemberTransactions> getTransactions() {
         return transactions;
@@ -178,4 +177,5 @@ public class Member implements Serializable {
                 ", plays=" + plays +
                 '}';
     }
+
 }

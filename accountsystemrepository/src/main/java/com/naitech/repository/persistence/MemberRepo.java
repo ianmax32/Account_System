@@ -21,4 +21,16 @@ public interface MemberRepo extends JpaRepository<Member, Long> {
 
     @Query(value = "select member_plays from members where member_id=:id",nativeQuery = true)
     public int curMemberPlays(@Param("id") Long id);
+
+    @Modifying
+    @Transactional
+    @Query(value = "update members set current_amount=:amount where member_id=:id",nativeQuery = true)
+    public void updateMemberAmount(@Param("id") Long id, @Param("amount") double amount);
+
+    @Modifying
+    @Transactional
+    @Query(value = "select current_amount from members where member_id=:id",nativeQuery = true)
+    public double getCurrentAmount(@Param("id") Long id);
+
+
 }

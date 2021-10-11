@@ -1,6 +1,7 @@
 package com.naitech.translator.impl;
 
 import com.naitech.domain.DTO.MemberDto;
+import com.naitech.domain.DTO.TransactionsDto;
 import com.naitech.domain.persistence.Member;
 import com.naitech.repository.persistence.*;
 import com.naitech.translator.MembersTranslator;
@@ -16,14 +17,20 @@ public class MembersTranslatorImpl implements MembersTranslator {
     private final DrivingRepo drivingRepo;
     private final Health_fitness_repo health_fitness_repo;
     private final SpendingRepo spendingRepo;
+    private final TransactionsRepo transactionsRepo;
+
 
     @Autowired
-    public MembersTranslatorImpl(MemberRepo memberRepo, DrivingRepo drivingRepo, Health_fitness_repo health_fitness_repo, SpendingRepo spendingRepo) {
+    public MembersTranslatorImpl(MemberRepo memberRepo, DrivingRepo drivingRepo, Health_fitness_repo health_fitness_repo, SpendingRepo spendingRepo, TransactionsRepo transactionsRepo) {
         this.memberRepo = memberRepo;
         this.drivingRepo = drivingRepo;
         this.health_fitness_repo = health_fitness_repo;
         this.spendingRepo = spendingRepo;
+        this.transactionsRepo = transactionsRepo;
     }
+
+
+
 
     @Override
     public List<MemberDto> getMembers() {
@@ -71,21 +78,13 @@ public class MembersTranslatorImpl implements MembersTranslator {
                 drivingRepo.deleteByMemberId(id);
                 health_fitness_repo.deleteByMemberId(id);
                 spendingRepo.deleteByMemberId(id);
+                transactionsRepo.deleteByMemberId(id);
             }
         }catch(Exception e){
             throw new RuntimeException("Cannot delete from the db",e);
         }
     }
 
-   /* @Override
-    public void updateMember(MemberDto memberDto) {
-        Member member = memberRepo.getID(memberDto.getName(), memberDto.getSurname());
-        try {
-            memberRepo.save(member);
-        }catch(Exception e){
-            throw new RuntimeException("Cannot add to db",e);
-        }
-    }*/
 
     @Override
     public void updateMemberPlays(Long id) {
@@ -106,6 +105,22 @@ public class MembersTranslatorImpl implements MembersTranslator {
             memberRepo.updateMemberPlaysCurr(id,plays);
         }catch(Exception e){
             throw new RuntimeException("Cannot update plays to db",e);
+        }
+    }
+
+    @Override
+    public void updateAmount(Long id, TransactionsDto transactionsDto) {
+        double cur_amount = memberRepo.getCurrentAmount(id);
+        try {
+            if(transactionsDto.getTransactionName().equalsIgnoreCase("game")){
+                cur_amount+= transactionsDto.getTransaction_amount();
+                memberRepo.updateMemberAmount(id,cur_amount);
+            }else{
+                cur_amount-= transactionsDto.getTransaction_amount();
+                memberRepo.updateMemberAmount(id,cur_amount);
+            }
+        }catch(Exception e){
+            throw new RuntimeException("Cannot update amount to db",e);
         }
     }
 }

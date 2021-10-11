@@ -2,7 +2,10 @@ package com.naitech.webservices.controllers;
 
 import com.naitech.domain.DTO.MemberDto;
 import com.naitech.domain.DTO.TransactionsDto;
+import com.naitech.domain.persistence.Member;
+import com.naitech.logic.flow.FetchMembersFlow;
 import com.naitech.logic.flow.FetchTransactionsFlow;
+import com.naitech.translator.MembersTranslator;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -17,11 +20,19 @@ import java.util.List;
 @RequestMapping("member/transactions")
 public class TransactionsController {
     private final FetchTransactionsFlow fetchTransactionsFlow;
+    private final FetchMembersFlow fetchMembersFlow;
 
     @Autowired
-    public TransactionsController(FetchTransactionsFlow fetchTransactionsFlow) {
+    public TransactionsController(FetchTransactionsFlow fetchTransactionsFlow, FetchMembersFlow fetchMembersFlow) {
         this.fetchTransactionsFlow = fetchTransactionsFlow;
+        this.fetchMembersFlow = fetchMembersFlow;
     }
+
+
+
+
+
+
 
     @GetMapping("/all")
     @ApiOperation(value="Gets all the members transactions" ,notes="Returns a list of the transactions of the members")

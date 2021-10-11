@@ -1,6 +1,7 @@
 package com.naitech.logic.flow;
 
 import com.naitech.domain.DTO.MemberDto;
+import com.naitech.domain.DTO.TransactionsDto;
 import com.naitech.domain.persistence.Member;
 
 import java.util.List;
